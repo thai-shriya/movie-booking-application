@@ -1,3 +1,0 @@
-exports.getAllMovies = (req, res)=>{
-    
-}
