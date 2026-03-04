@@ -12,6 +12,7 @@ const createMovieSchema = z.object({
         errorMap: () => ({ message: `Status must be one of: ${VALID_STATUSES.join(', ')}` }),
     }),
     director: z.string().min(1, 'Director is required'),
+    genre: z.string().min(1, 'genre is required')
 }).strict();
 
 // Schema for updating a movie (PATCH) - all fields optional
@@ -24,6 +25,7 @@ const updateMovieSchema = z.object({
         errorMap: () => ({ message: `Status must be one of: ${VALID_STATUSES.join(', ')}` }),
     }).optional(),
     director: z.string().optional(),
+    genre: z.string().optional()
 }).strict();
 
 module.exports = {

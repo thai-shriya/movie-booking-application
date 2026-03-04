@@ -7,8 +7,8 @@ const findAllMovies = async () => {
 };
 
 const createMovie = async (movieData) => {
-    const { movie_name, release_date, actors, movie_language, release_status, director } = movieData;
-    const result = await pool.query(queries.INSERT_MOVIE, [movie_name, release_date, actors, movie_language, release_status, director]);
+    const { movie_name, release_date, actors, movie_language, release_status, director, genre } = movieData;
+    const result = await pool.query(queries.INSERT_MOVIE, [movie_name, release_date, actors, movie_language, release_status, director, genre]);
     return result.rows[0];
 };
 

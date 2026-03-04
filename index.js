@@ -3,7 +3,10 @@ const express = require('express')
 const pool = require('./src/config/db')
 const app = express()
 
+const moviesRoutes = require('./src/modules/movies/movies.routes')
 
+app.use(express.json())
+app.use(moviesRoutes)
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', (req, res) => {
