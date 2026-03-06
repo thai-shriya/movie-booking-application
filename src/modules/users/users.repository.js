@@ -23,7 +23,9 @@ const updateUser = async (id, userData) => {
 
     const query = `UPDATE users SET ${setClauses.join(', ')} WHERE user_id = $${fields.length + 1} RETURNING *`;
     const result = await pool.query(query, [...values, id]);
+    console.log('From users repo file', result);
     return result.rows[0];
+
 };
 
 const deleteUser = async (id) => {
