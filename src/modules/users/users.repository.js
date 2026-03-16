@@ -1,5 +1,6 @@
 const pool = require('../../config/db');
 const queries = require('../users/users.sql');
+const bycrypt = require('bcryptjs');
 
 const findAllUsers = async () => {
     const result = await pool.query(queries.SELECT_ALL_USERS);
@@ -8,7 +9,8 @@ const findAllUsers = async () => {
 
 const createUser = async (userData) => {
     const { name, email, password, user_type, user_status } = userData;
-    const result = await pool.query(queries.ADD_USER, [name, email, password, user_type, user_status]);
+    const hashed_password = await bycrypt.hash(password, 10);
+    const result = await pool.query(queries.ADD_USER, [name, email, hashed_password, user_type, user_status]);
     return result.rows[0];
 }
 
