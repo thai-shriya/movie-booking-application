@@ -45,9 +45,31 @@ const deleteUser = async (req, res) => {
     }
 };
 
+const signinUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const userOrError = await usersService.validateUserCreds(email, password);
+
+        // If the service returned a specific error string
+        if (typeof userOrError === 'string') {
+            return res.status(401).json({ error: userOrError });
+        }
+
+        // General fallback check
+        if (!userOrError) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        res.status(200).json({ message: 'Authentication successful', user: userOrError });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to authenticate user' });
+    }
+};
+
 module.exports = {
     getAllUsers,
     addUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    signinUser
 };

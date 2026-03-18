@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('./users.controller');
 const { validate } = require('../../shared/middlewares/validate');
+const { validateSigninRequest } = require('../../shared/middlewares/signin');
 const { createUserSchema, updateUserSchema } = require('./users.validator');
 
 //GET request to fetch all users
@@ -15,5 +16,8 @@ router.patch('/mba/api/v1/users/:id', validate(updateUserSchema), usersControlle
 
 //DELETE request to delete a user
 router.delete('/mba/api/v1/users/:id', usersController.deleteUser);
+
+//POST request for user signin
+router.post('/mba/api/v1/users/signin', validateSigninRequest, usersController.signinUser);
 
 module.exports = router;

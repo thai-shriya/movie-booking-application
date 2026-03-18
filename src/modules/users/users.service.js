@@ -17,7 +17,12 @@ const deleteUser = async (id) => {
     return await usersRepository.deleteUser(id);
 };
 
+const validateUserCreds = async (email, password) => {
+    return await usersRepository.validateUserCreds(email, password);
+};
+
 module.exports = {
+    validateUserCreds,
     getAllUsers,
     addUser,
     updateUser,
