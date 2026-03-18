@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('./users.controller');
-const validate = require('../../shared/middlewares/validate');
+const { validate } = require('../../shared/middlewares/validate');
 const { createUserSchema, updateUserSchema } = require('./users.validator');
 
 //GET request to fetch all users

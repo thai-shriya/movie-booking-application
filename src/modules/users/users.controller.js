@@ -11,6 +11,7 @@ const getAllUsers = async (req, res) => {
 
 const addUser = async (req, res) => {
     try {
+        console.log("in users controller", req.validatedBody);
         const user = await usersService.addUser(req.validatedBody);
         res.status(201).json(user);
     } catch (error) {

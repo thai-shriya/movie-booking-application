@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const moviesController = require('./movies.controller');
-const validate = require('../../shared/middlewares/validate');
+const { validate } = require('../../shared/middlewares/validate');
 const { createMovieSchema, updateMovieSchema } = require('./movies.validator');
 
 //GET request to fetch all movies

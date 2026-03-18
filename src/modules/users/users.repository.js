@@ -9,6 +9,7 @@ const findAllUsers = async () => {
 
 const createUser = async (userData) => {
     const { name, email, password, user_type, user_status } = userData;
+    //encrypt password
     const hashed_password = await bycrypt.hash(password, 10);
     const result = await pool.query(queries.ADD_USER, [name, email, hashed_password, user_type, user_status]);
     return result.rows[0];
