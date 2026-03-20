@@ -11,7 +11,9 @@ const getAllMovies = async (req, res) => {
 
 const addMovie = async (req, res) => {
     try {
+
         const movie = await moviesService.addMovie(req.validatedBody);
+        //authorize header for role based access. 
         res.status(201).json(movie);
     } catch (error) {
         res.status(500).json({ error: 'Failed to add movie' });
