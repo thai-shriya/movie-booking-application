@@ -1,4 +1,5 @@
 const usersService = require('./users.service');
+const jwt = require('jsonwebtoken');
 
 const getAllUsers = async (req, res) => {
     try {
@@ -59,8 +60,16 @@ const signinUser = async (req, res) => {
         if (!userOrError) {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
+        const token = jwt.sign({ id: userOrError.id, email: userOrError.email }, process.env.JWT_SECRET, { expiresIn: '1h' }
+        );
 
-        res.status(200).json({ message: 'Authentication successful', user: userOrError });
+        res.status(200).json({
+            message: 'Authentication successful',
+            user: userOrError,
+            data: {
+                token
+            }
+        });
     } catch (error) {
         res.status(500).json({ error: 'Failed to authenticate user' });
     }

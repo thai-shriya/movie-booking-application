@@ -2,6 +2,7 @@ const pool = require('../../config/db');
 const queries = require('../users/users.sql');
 const bycrypt = require('bcryptjs');
 
+
 //hash password logic separate from create user method
 const encryptPassword = async (password) => {
     const hashpassword = await bycrypt.hash(password, 10);
