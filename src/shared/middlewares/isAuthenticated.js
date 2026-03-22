@@ -1,6 +1,6 @@
 const isAuthenticated = (req, res, next) => {
     const user_role = req.user?.user_type;
-    if (user_role === 'customer' || user_role === 'admin') {
+    if (user_role === 'client' || user_role === 'admin') {
         return next();
     }
     return res.status(403).json({
