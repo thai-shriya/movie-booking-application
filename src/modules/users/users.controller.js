@@ -78,6 +78,11 @@ const signinUser = async (req, res) => {
     }
 };
 
+//Users should be able to browse movies/theaters 
+//Users should be able to select seats
+//users should be able to compelete payment
+//users should be able to receive notification of booking completion. 
+
 module.exports = {
     getAllUsers,
     addUser,
